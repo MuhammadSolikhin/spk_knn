@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
-// Import Controller Custom Anda
+// Import C/'ontroller Custom Anda
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\JurusanController;
@@ -34,12 +34,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Dashboard Admin
     // URL: /admin/dashboard
     // Name: admin.dashboard
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // --- MANAJEMEN MASTER DATA ---
-    
+
     // CRUD Kriteria (Fitur/Atribut)
     // URL: /admin/kriteria, /admin/kriteria/create, dll
     Route::resource('kriteria', KriteriaController::class);
@@ -51,7 +49,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     // CRUD Data Training (Data Alumni)
     Route::resource('datatraining', DataTrainingController::class);
-    
+
     // (Opsional) Fitur Import Excel Data Training
     // Route::post('/datatraining/import', [DataTrainingController::class, 'import'])->name('datatraining.import');
 
@@ -73,9 +71,7 @@ Route::middleware(['auth', 'role:siswa'])->prefix('siswa')->name('siswa.')->grou
     // Dashboard Siswa
     // URL: /siswa/dashboard
     // Name: siswa.dashboard
-    Route::get('/dashboard', function () {
-        return view('siswa.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'indexSiswa'])->name('dashboard');
 
     // --- FITUR UTAMA: KONSULTASI / TES MINAT ---
 
@@ -105,4 +101,4 @@ Route::middleware('auth')->group(function () {
 });
 
 // Load route auth bawaan (login, register, logout)
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

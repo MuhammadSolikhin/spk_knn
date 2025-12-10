@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\RiwayatController;
+use App\Http\Controllers\Admin\SiswaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
@@ -41,7 +43,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // CRUD Kriteria (Fitur/Atribut)
     // URL: /admin/kriteria, /admin/kriteria/create, dll
     Route::resource('kriteria', KriteriaController::class);
-
+    Route::resource('siswa', SiswaController::class);
+    Route::resource('riwayat', RiwayatController::class)->only(['index', 'show', 'destroy']);
     // CRUD Jurusan (Class/Label)
     Route::resource('jurusan', JurusanController::class);
 

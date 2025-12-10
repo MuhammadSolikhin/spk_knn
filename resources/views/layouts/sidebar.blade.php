@@ -87,6 +87,13 @@
                 </a>
             </li>
 
+            <li class="menu-item {{ request()->routeIs('admin.siswa.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.siswa.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-user"></i>
+                    <div data-i18n="Data Siswa">Data Siswa</div>
+                </a>
+            </li>
+
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Dataset KNN</span>
             </li>
@@ -97,6 +104,18 @@
                     <div data-i18n="Data Training">Data Training</div>
                 </a>
             </li>
+
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Laporan</span>
+            </li>
+
+            <li class="menu-item {{ request()->routeIs('admin.riwayat.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.riwayat.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-history"></i>
+                    <div data-i18n="Riwayat Rekomendasi">Riwayat Rekomendasi</div>
+                </a>
+            </li>
+
         @endif
 
         @if(auth()->user()->role == 'siswa')
